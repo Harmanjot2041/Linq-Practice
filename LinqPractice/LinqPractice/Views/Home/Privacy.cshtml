@@ -1,0 +1,107 @@
+﻿
+@model TwoModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+    // List<Student> temp = ViewData["StudentList"];
+
+}
+
+
+
+    <h3> Enter For Filters</h3>
+<div class="alert-danger" id="Error"></div>
+<form asp-controller="Home" asp-action="InputFilterSubmit" method="post" id="SubmitForm">
+    <div class="row">
+        <label>
+            Id
+        </label>
+        <input value="@Model.FilterInput.StudentID" type="text" name="StudentID" id="StudentID" placeholder="id" />
+        
+        <label>
+            Name
+        </label>
+        <input value="@Model.FilterInput.StudentName" id="StudentName" name="StudentName" type="text" placeholder="Name" />
+       
+        <label>
+            Age
+        </label>
+        <input value="@Model.FilterInput.Age" id="Age" name="Age" type="text" placeholder="Age" />
+       
+        <button class="btn btn-outline-primary" type="button" onclick="handleClick()"> Submit </button>
+    </div>
+</form>
+<br/>
+<h3> Add new Student</h3>
+<form asp-controller="Home" asp-action="AddStudent" method="post">
+    <div class="row">
+        <label>
+            Id
+        </label>
+        <input value="@Model.FilterInput.StudentID" type="text" name="StudentID" id="id" placeholder="id" />
+        <label>
+            Name
+        </label>
+        <input value="@Model.FilterInput.StudentName" id="StudentName" name="StudentName" type="text" placeholder="Name" />
+
+        <label>
+            Age
+        </label>
+        <input value="@Model.FilterInput.Age" id="Age" name="Age" type="text" placeholder="Age" />
+
+        <button class="btn btn-outline-success" type="submit"> Add </button>
+    </div>
+</form>
+
+
+<br/><br/>
+@*@{
+    Html.Partial("_StudentData");
+}*@
+<h2>Students List </h2>
+<div class="row">
+    @*<button id="1" asp-controller="Home" asp-action="Pagination">1</button>*@
+
+   <button>@Html.ActionLink("1", "Pagination", new { id = 1 }) </button>
+   <button> @Html.ActionLink("2", "Pagination", new { id = 2 })</button>
+   <button>@Html.ActionLink("3", "Pagination", new { id = 3 })</button>
+   <button> @Html.ActionLink("4", "Pagination", new { id = 4 })</button>
+   <button> @Html.ActionLink("5", "Pagination", new { id = 5 })</button>
+       <button>
+           @Html.ActionLink("6", "Pagination", new { id = 6 })
+       </button>
+       <button>
+           @Html.ActionLink("7", "Pagination", new { id = 7 })
+       </button>
+       <button>
+           @Html.ActionLink("8", "Pagination", new { id = 8 })
+       </button>
+       <button>
+           @Html.ActionLink("9", "Pagination", new { id = 9 })
+       </button>
+       <button>
+           @Html.ActionLink("10", "Pagination", new { id = 10 })
+       </button>
+       <button> 
+           @Html.ActionLink("11", "Pagination", new { id = 11 })
+       </button>
+
+
+</div>
+<table style="width:100%">
+    <tr>
+        <th>Student ID</th>
+        <th>Student Name</th>
+        <th>Age</th>
+    </tr>
+    @foreach (Student data in Model.StudentList)
+    {
+        <tr>
+            <td>@data.StudentID</td>
+            <td>@data.StudentName</td>
+            <td>@data.Age</td>
+        </tr>
+    }
+
+
+</table>
+<script src="~/js/FilterHandle.js"></script>
